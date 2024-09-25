@@ -5,7 +5,7 @@ import { OpenAI } from "@langchain/openai";
 import { PromptTemplate } from "@langchain/core/prompts";
 // import { z } from "zod";
 // import { StructuredOutputParser, OutputFixingParser } from "@langchain/core/output_parsers";
-import { ParsedWeather } from "../service/weatherService";
+import type { Weather } from "../service/weatherService";
 
 // Load environment variables
 dotenv.config();
@@ -17,8 +17,9 @@ const app = express();
 app.use(express.json());
 
 // Initialize the OpenAI model in the AnnouncerService class
-class AnnouncerService {
+class AnnouncerController {
   private model: OpenAI;
+  public static announcerPromptFunction: (weatherData: any) => Promise<string>;
 
   constructor() {
     // Check if the API key is defined
@@ -78,4 +79,4 @@ class AnnouncerService {
   }
 }
 
-export default AnnouncerService;
+export default AnnouncerController;
