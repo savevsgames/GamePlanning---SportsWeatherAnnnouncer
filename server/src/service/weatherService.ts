@@ -8,7 +8,7 @@ interface Coordinates {
 }
 
 // ParsedWeather interface
-interface ParsedWeather {
+export interface ParsedWeather {
   city: string;
   date: string;
   dt: number;
