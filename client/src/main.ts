@@ -88,6 +88,20 @@ const deleteCityFromHistory = async (id: string) => {
   });
 };
 
+// OPEN AI API CALL
+const fetchAnnouncerForecast = async (cityName: string) => {
+  const response = await fetch("/api/announcer/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ cityName }),
+  });
+
+  const forecast = await response.json();
+  return forecast;
+};
+
 /*
 
 Render Functions
@@ -175,6 +189,11 @@ const renderSearchHistory = async (searchHistory: any) => {
     }
   }
 };
+
+const renderAnnouncerForecast = async (cityName: string) => {
+  const forecast = await fetchAnnouncerForecast(cityName);
+  console.log("forecast: ", forecast);
+}
 
 /*
 
@@ -278,6 +297,10 @@ const handleSearchFormSubmit = (event: any): void => {
   fetchWeather(search).then(() => {
     getAndRenderHistory();
   });
+
+  // call the openAI API with the city name as well
+  renderAnnouncerForecast(search);
+
   searchInput.value = "";
 };
 
