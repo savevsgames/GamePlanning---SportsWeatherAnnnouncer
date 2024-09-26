@@ -10,23 +10,30 @@
       integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
       crossorigin="anonymous"
     />
-    <title>Weather Dashboard</title>
+    <title>GAME PLANNING - SPORTS WEATHER ANNOUNCEMENT DASHBOARD</title>
   </head>
 
   <body>
     <header
       class="container-fluid text-center text-white bg-dark p-1 weather-header"
     >
-      <h1>Weather Dashboard</h1>
+      <h1>GAME PLANNING</h1>
+      <h3>SPORTS WEATHER ANNOUNCEMENT DASHBOARD</h3>
     </header>
 
     <!-- max-width for ultra wide resolutions -->
     <div class="container-fluid" style="max-width: 1400px">
       <div class="row">
+        <p id="welcomeMsg">
+         WELCOME SPORTS FANS! <br>
+         Type your city name in and see how the weather looks for a ball game!
+       </p>
+      </div>
+      <div class="row">
         <aside class="col-lg-3 pb-3">
-          <h2 id="form-heading" class="mt-1 h3 form-label">
+          <h4 id="form-heading">
             Search for a City:
-          </h2>
+          </h4>
           <form id="search-form" class="form">
             <div class="form-inline form-group">
               <div class="input-group">
@@ -71,6 +78,12 @@
           </section>
           <section
             id="forecast"
+            class="row mt-3"
+            role="region"
+            aria-live="polite"
+          ></section>
+          <section
+            id="announcer"
             class="row mt-3"
             role="region"
             aria-live="polite"

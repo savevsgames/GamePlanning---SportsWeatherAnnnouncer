@@ -9,6 +9,9 @@ const searchInput: HTMLInputElement = document.getElementById(
 ) as HTMLInputElement;
 const todayContainer = document.querySelector("#today") as HTMLDivElement;
 const forecastContainer = document.querySelector("#forecast") as HTMLDivElement;
+const announcerContainer = document.querySelector(
+  "#announcer"
+) as HTMLDivElement;
 const searchHistoryContainer = document.getElementById(
   "history"
 ) as HTMLDivElement;
@@ -113,7 +116,7 @@ const renderCurrentWeather = (currentWeather: any): void => {
     currentWeather;
 
   // convert the following to typescript
-  heading.textContent = `${city} (${date})`;
+  heading.textContent = `${city}`;
   weatherIcon.setAttribute(
     "src",
     `https://openweathermap.org/img/w/${icon}.png`
@@ -121,13 +124,11 @@ const renderCurrentWeather = (currentWeather: any): void => {
   weatherIcon.setAttribute("alt", iconDescription);
   weatherIcon.setAttribute("class", "weather-img");
   heading.append(weatherIcon);
-  tempEl.textContent = `Temp: ${tempF}°F`;
-  windEl.textContent = `Wind: ${windSpeed} MPH`;
-  humidityEl.textContent = `Humidity: ${humidity} %`;
+  
 
   if (todayContainer) {
     todayContainer.innerHTML = "";
-    todayContainer.append(heading, tempEl, windEl, humidityEl);
+    todayContainer.append(heading);
   }
 };
 
@@ -190,10 +191,11 @@ const renderSearchHistory = async (searchHistory: any) => {
   }
 };
 
-const renderAnnouncerForecast = async (cityName: string) => {
+const getAndRenderAnnouncerForecast = async (cityName: string) => {
   const forecast = await fetchAnnouncerForecast(cityName);
   console.log("forecast: ", forecast);
-}
+  createAnnouncerForecastContainer(forecast);
+};
 
 /*
 
@@ -280,6 +282,34 @@ const buildHistoryListItem = (city: any) => {
   return historyDiv;
 };
 
+const createAnnouncerForecastContainer = async (forecast: any) => {
+  const forecastString = forecast.forecast;
+
+  // Split the forecast string into an array of strings
+  const forecastStringArray = forecastString.split("\n");
+  console.log("forecastStringArray: ", forecastStringArray);
+
+  const forecastDiv = document.createElement("div");
+  forecastDiv.classList.add("forecast-div");
+
+  const forecastTitle = document.createElement("h3");
+  forecastTitle.textContent = "Announcer Forecast";
+  forecastTitle.classList.add("forecast-title");
+  forecastDiv.append(forecastTitle);
+
+  let forecastTextArray = document.createElement("div");
+
+  for (let i = 0; i < forecastStringArray.length; i++) {
+    const forecastText = document.createElement("p");
+    forecastText.classList.add("forecast-announcer-text");
+    forecastText.textContent = forecastStringArray[i];
+    forecastTextArray.append(forecastText);
+  }
+  forecastDiv.append(forecastTextArray);
+
+  announcerContainer.appendChild(forecastDiv);
+};
+
 /*
 
 Event Handlers
@@ -298,8 +328,10 @@ const handleSearchFormSubmit = (event: any): void => {
     getAndRenderHistory();
   });
 
+  // Delete all content in the announcer container
+  announcerContainer.innerHTML = "";
   // call the openAI API with the city name as well
-  renderAnnouncerForecast(search);
+  getAndRenderAnnouncerForecast(search);
 
   searchInput.value = "";
 };
@@ -308,6 +340,10 @@ const handleSearchHistoryClick = (event: any) => {
   if (event.target.matches(".history-btn")) {
     const city = event.target.textContent;
     fetchWeather(city).then(getAndRenderHistory);
+    // Delete all content in the announcer container
+    announcerContainer.innerHTML = "";
+    // call the openAI API with the city name as well
+    getAndRenderAnnouncerForecast(city);
   }
 };
 
