@@ -26,6 +26,10 @@
 
 The **Game Planning - Sports Weather Announcer** is a web application that combines data from the OpenWeather API with OpenAI's API to produce a 5-day weather forecast, delivered in the style of a baseball radio announcer. It provides a fun and engaging way to present weather information, making it perfect for use in game planning scenarios where weather plays a role in outdoor activities.
 
+To begin the project I cloned my previous Weather API app, available here: [BACK-END-WEATHER-API](https://github.com/savevsgames/BackEnd-WeatherAPI)
+
+I maintained the project structure and added some minor css (to add to the baseball theme) and routing for the OpenAI API to recieve the weather data for a city that a user searches for and return the formatted 'Announcer Forecast' to be appended to the page when it completes.
+
 ## Installation Instructions
 
 To install the **Game Planning - Sports Weather Announcer**, follow these steps:
