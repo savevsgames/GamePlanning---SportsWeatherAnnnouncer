@@ -21,15 +21,6 @@ const heading: HTMLHeadingElement = document.getElementById(
 const weatherIcon: HTMLImageElement = document.getElementById(
   "weather-img"
 ) as HTMLImageElement;
-const tempEl: HTMLParagraphElement = document.getElementById(
-  "temp"
-) as HTMLParagraphElement;
-const windEl: HTMLParagraphElement = document.getElementById(
-  "wind"
-) as HTMLParagraphElement;
-const humidityEl: HTMLParagraphElement = document.getElementById(
-  "humidity"
-) as HTMLParagraphElement;
 
 /*
  DOM Conent Loaded = If there is a search history, render it
@@ -112,8 +103,7 @@ Render Functions
 */
 
 const renderCurrentWeather = (currentWeather: any): void => {
-  const { city, date, icon, iconDescription, tempF, windSpeed, humidity } =
-    currentWeather;
+  const { city, icon, iconDescription } = currentWeather;
 
   // convert the following to typescript
   heading.textContent = `${city}`;
@@ -124,7 +114,6 @@ const renderCurrentWeather = (currentWeather: any): void => {
   weatherIcon.setAttribute("alt", iconDescription);
   weatherIcon.setAttribute("class", "weather-img");
   heading.append(weatherIcon);
-  
 
   if (todayContainer) {
     todayContainer.innerHTML = "";

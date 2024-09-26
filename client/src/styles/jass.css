@@ -1925,6 +1925,11 @@ label form [type="radio"] {
   text-align: center;
   width: 100%;
   margin: 2rem;
+  padding: 1rem;
+  font-weight: bold;
+  background-color: #d4d19b;
+  border-radius: 1rem;
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5);
 }
 
 #announcer {
@@ -1949,7 +1954,7 @@ label form [type="radio"] {
 .forecast-title {
   color: #18330b;
   background-color: #18330b;
-  border: solid 1px #18330b;
+  border: dotted 2px #18330b;
   margin: 0.5rem;
   padding: 0.5rem;
   border-radius: 0.5rem;

@@ -12,21 +12,9 @@
     "lon": -74.0060152
   },
   {
-    "name": "San Diego",
-    "id": "65151e76-0e1b-459f-9843-7c150840d407",
-    "lat": 32.7174202,
-    "lon": -117.1627728
-  },
-  {
-    "name": "Calgary",
-    "id": "3e9f0ffa-76ec-4e7b-bb6c-7cfe4ce85e9a",
-    "lat": 51.0460954,
-    "lon": -114.065465
-  },
-  {
-    "name": "Toronto",
-    "id": "301d4148-fafa-4baf-8ea4-f0af4cb42a90",
-    "lat": 43.6534817,
-    "lon": -79.3839347
+    "name": "Miami",
+    "id": "6e0e95f4-1220-4bac-9ce0-50a2fdd9a9e2",
+    "lat": 25.7741728,
+    "lon": -80.19362
   }
 ]
