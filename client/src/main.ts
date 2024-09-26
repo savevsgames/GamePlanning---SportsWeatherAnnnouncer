@@ -34,9 +34,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Load the most recent city in history
     const lastCity = historyList[historyList.length - 1].cityName;
     fetchWeather(lastCity);
+    getAndRenderAnnouncerForecast(lastCity);
   } else {
     // No history, load default city
     fetchWeather("Toronto"); // or any default city of your choice
+    getAndRenderAnnouncerForecast("Toronto");
   }
 });
 
@@ -153,7 +155,7 @@ const renderForecastCard = (forecast: any) => {
   );
   weatherIcon.setAttribute("alt", iconDescription);
   tempEl.textContent = `Temp: ${tempF} °F`;
-  windEl.textContent = `Wind: ${windSpeed} MPH`;
+  windEl.textContent = `Wind: ${Math.round(windSpeed * 2.23694)} mph`;
   humidityEl.textContent = `Humidity: ${humidity} %`;
 
   if (forecastContainer) {
@@ -179,7 +181,7 @@ const renderSearchHistory = async (searchHistory: any) => {
     }
   }
 };
-
+// Function to get and render the announcer forecast from the OpenAI API
 const getAndRenderAnnouncerForecast = async (cityName: string) => {
   const forecast = await fetchAnnouncerForecast(cityName);
   console.log("forecast: ", forecast);
@@ -196,7 +198,7 @@ const createForecastCard = () => {
   const col = document.createElement("div");
   const card = document.createElement("div");
   const cardBody = document.createElement("div");
-  const cardTitle = document.createElement("h5");
+  const cardTitle = document.createElement("h6");
   const weatherIcon = document.createElement("img");
   const tempEl = document.createElement("p");
   const windEl = document.createElement("p");
@@ -271,6 +273,7 @@ const buildHistoryListItem = (city: any) => {
   return historyDiv;
 };
 
+// Function to create the announcer forecast container
 const createAnnouncerForecastContainer = async (forecast: any) => {
   const forecastString = forecast.forecast;
 
