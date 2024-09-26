@@ -30,6 +30,8 @@ To begin the project I cloned my previous Weather API app, available here: [BACK
 
 I maintained the project structure and added some minor css (to add to the baseball theme) and routing for the OpenAI API to recieve the weather data for a city that a user searches for and return the formatted 'Announcer Forecast' to be appended to the page when it completes.
 
+![SCREENSHOT](./readme_assets/app_screenshot.png)
+
 ## Installation Instructions
 
 To install the **Game Planning - Sports Weather Announcer**, follow these steps:
